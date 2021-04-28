@@ -40,6 +40,9 @@ interface Props {
   fontSize?: number;
   perpendicularText?: boolean;
   textDistance?: number;
+  startSpinningTime?: number;
+  continueSpinningTime?: number;
+  stopSpinningTime?: number;
 }
 
 const STARTED_SPINNING = 'started-spinning';
@@ -65,6 +68,10 @@ export const Wheel = ({
   fontSize = DEFAULT_FONT_SIZE,
   perpendicularText = false,
   textDistance = DEFAULT_TEXT_DISTANCE,
+  startSpinningTime = START_SPINNING_TIME,
+  continueSpinningTime = CONTINUE_SPINNING_TIME,
+  stopSpinningTime = STOP_SPINNING_TIME,
+
 }: Props) => {
   const [wheelData, setWheelData] = useState<WheelData[]>([...data]);
   const [startRotationDegrees, setStartRotationDegrees] = useState(0);
@@ -125,7 +132,7 @@ export const Wheel = ({
         setHasStoppedSpinning(true);
         onStopSpinning();
       }
-    }, START_SPINNING_TIME + CONTINUE_SPINNING_TIME + STOP_SPINNING_TIME - 300);
+    }, startSpinningTime + continueSpinningTime + stopSpinningTime - 300);
   };
 
   const getRouletteClass = () => {
@@ -138,14 +145,16 @@ export const Wheel = ({
   if (!isDataUpdated) {
     return null;
   }
-
+  
+  
+  
   return (
     <RouletteContainer>
       <RotationContainer
         className={getRouletteClass()}
-        startSpinningTime={START_SPINNING_TIME}
-        continueSpinningTime={CONTINUE_SPINNING_TIME}
-        stopSpinningTime={STOP_SPINNING_TIME}
+        startSpinningTime={startSpinningTime}
+        continueSpinningTime={continueSpinningTime}
+        stopSpinningTime={stopSpinningTime}
         startRotationDegrees={startRotationDegrees}
         finalRotationDegrees={finalRotationDegrees}
       >

@@ -60,7 +60,7 @@
   "scripts": {
     "start-server": "react-scripts start",
     "start": "webpack --watch",
-    "build": "webpack && tsc && cp -R ./src/assets ./dist",
+    "build": "webpack && tsc && xcopy \".\\src\\assets\" \".\\dist\\assets\" /s /e /h /i /Y",
     "test": "react-scripts test",
     "coverage": "CI=true npm test -- --env=jsdom --coverage",
     "eject": "react-scripts eject",
